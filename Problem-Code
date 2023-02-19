@@ -1,0 +1,16 @@
+class Solution {
+    public static void f(int ind, int[] arr, List<Integer> al, int target, List<List<Integer>> list){
+     if(ind==arr.length){
+         if(target==0)  list.add(new ArrayList<>(al)); return;}
+     if(target<0) return;
+     if(arr[ind]<=target)
+    {al.add(arr[ind]); f(ind, arr, al, target-arr[ind], list);
+     al.remove(al.size()-1);}
+     f(ind+1, arr, al, target, list);
+     }
+    public List<List<Integer>> combinationSum(int[] candidates, int target) {
+        List<List<Integer>> list=new ArrayList<List<Integer>>();
+     f(0, candidates, new ArrayList<Integer>(), target, list);
+     return list;
+    }
+}
